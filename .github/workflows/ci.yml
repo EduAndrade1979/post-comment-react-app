@@ -1,12 +1,17 @@
 name: CI
 
 on: [push]
+
 jobs:
   build-test:
-    runs-on: Ubuntu-20.4
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Cypress tests
         uses: cypress-io/github-action@v5
@@ -22,4 +27,4 @@ jobs:
             cypress/screenshots
             cypress/videos
             cypress/results
-          if no files fonund: ignore
+          if-no-files-found: ignore
